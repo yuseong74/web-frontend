@@ -16,11 +16,11 @@
     }
   },
   "files.associations": {
-    "*.js": "javascriptreact",
+    "*.jsx": "javascriptreact",
     ".browserslistrc": "bat",
     ".prettierrc": "json",
     ".htmlhintrc": "json",
-    ".npmrc": "dotenv"
+    ".npmrc": "bat"
   },
 
   "path-intellisense.extensionOnImport": true,

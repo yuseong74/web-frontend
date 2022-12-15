@@ -1,0 +1,40 @@
+{
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "name": "web-frontend",
+  "description": "웹 프론트엔드 학습",
+  "license": "MIT",
+  "scripts": {
+    "start": "run-p serve compile",
+    "dev": "run-p serve:dev watch",
+    "serve": "live-server public --host=localhost --port=3000",
+    "serve:dev": "npm run serve -- --no-browser",
+    "html:hint": "htmlhint \"public/**/*.html\"",
+    "image:min": "imagemin src/assets/* -o public/assets",
+    "compile": "run-p compile:*",
+    "watch": "run-p watch:*",
+    "compile:sass": "sass src/sass:public/css --style=compressed",
+    "watch:sass": "npm run compile:sass -- --watch",
+    "compile:babel": "babel src -d public/scripts",
+    "watch:babel": "npm run compile:babel -- --watch"
+  },
+  "author": {
+    "name": "yamoo9",
+    "email": "yamoo9@euid.dev",
+    "url": "https://euid.dev"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.20.5",
+    "@babel/preset-env": "7.20.2",
+    "htmlhint": "1.1.4",
+    "imagemin-cli": "7.0.0",
+    "live-server": "1.2.2",
+    "npm-run-all": "4.1.5",
+    "sass": "1.56.2"
+  },
+  "dependencies": {
+    "core-js": "3.26.1"
+  }
+}
