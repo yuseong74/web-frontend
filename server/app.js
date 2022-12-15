@@ -1,40 +1,32 @@
+require('dotenv/config');
+
+const { API_URL, PORT: INITIAL_PORT } = process.env;
+
 const { resolve } = require('node:path');
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
-const PORT = 4000;
+
+const PORT = INITIAL_PORT ?? 4000;
+
+/* Serving Statics ---------------------------------------------------------- */
 
 const PUBLIC_DIR = resolve(__dirname, '../client/public');
 
 app.use(express.static(PUBLIC_DIR));
 
-// 비동기 요청(client) ← → 비동기 응답(server)
-// CALLBACK, PROMISE, ASYNC FUNCTION
+/* Middlewares -------------------------------------------------------------- */
 
-const users = [
-  {
-    id: 1,
-    name: '야무',
-    job: '강사',
-    isAdmin: false,
-  },
-  {
-    id: 2,
-    name: '슬비',
-    job: '강사',
-    isAdmin: true,
-  },
-];
+app.use(express.urlencoded());
+app.use(express.json());
+app.use(morgan('tiny'));
 
-// RESTful API
+/* Routing ------------------------------------------------------------------ */
 
-// GET
-app.get('/api/v1/users', (req, res) => {
-  res.send(users);
-});
+// const userRoutes = require('./routes/users');
+app.use(`${API_URL}/users`, require('./routes/users'));
 
-// POST
-// PUT
-// DELETE
+/* Listening ---------------------------------------------------------------- */
 
 app.listen(PORT, () => {
   console.log(`Express 서버 구동: http://localhost:${PORT}`);
