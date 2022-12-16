@@ -1,6 +1,6 @@
 module.exports = {
   comments: false,
-  minified: true,
+  // minified: true,
   ignore: ['./src/ecmascript-core', './src/ecmascript-next'],
   presets: [
     [
@@ -11,11 +11,6 @@ module.exports = {
         // corejs: '3.8',
       },
     ],
-    '@babel/preset-react'
+    ['@babel/preset-react', {}],
   ],
-  plugins: [
-    '@babel/plugin-transform-runtime',
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-proposal-class-properties',
-  ]
 };
